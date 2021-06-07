@@ -1,0 +1,3 @@
+module logic {
+    requires mainFrame;
+}

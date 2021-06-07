@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
+<Stage xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene>
+            <AnchorPane fx:id="actions" prefHeight="680.0" prefWidth="974.0">
+            <children>
+               <Button fx:id="startbutton" layoutX="814.0" layoutY="641.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Start" />
+               <Button fx:id="previebutton" layoutX="899.0" layoutY="641.0" mnemonicParsing="false" text="Preview" />
+               <Button fx:id="settings" layoutX="32.0" layoutY="641.0" mnemonicParsing="false" text="Settings" />
+               <ChoiceBox fx:id="action" layoutX="692.0" layoutY="55.0" prefWidth="150.0" />
+               <ChoiceBox fx:id="object" layoutX="261.0" layoutY="55.0" prefWidth="150.0" />
+               <ColorPicker fx:id="dcolor" layoutX="421.0" layoutY="55.0" />
+               <Button fx:id="actionadd" layoutX="864.0" layoutY="55.0" mnemonicParsing="false" text="add" />
+               <ScrollPane layoutX="261.0" layoutY="279.0" prefHeight="246.0" prefWidth="414.0">
+                 <content>
+                   <AnchorPane fx:id="objectlist" minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="400.0" />
+                 </content>
+               </ScrollPane>
+               <ChoiceBox fx:id="transformation" layoutX="32.0" layoutY="254.0" prefWidth="150.0" />
+               <Button fx:id="transadd" layoutX="210.0" layoutY="254.0" mnemonicParsing="false" text="add" />
+               <Button fx:id="objectadd" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="save" />
+               <ScrollPane layoutX="32.0" layoutY="293.0" prefHeight="122.0" prefWidth="215.0">
+                 <content>
+                   <AnchorPane fx:id="translist" minHeight="0.0" minWidth="0.0" prefHeight="121.0" prefWidth="200.0" />
+                 </content>
+               </ScrollPane>
+               <ScrollPane layoutX="692.0" layoutY="144.0" prefHeight="128.0" prefWidth="209.0">
+                 <content>
+                   <AnchorPane fx:id="actionlist" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                 </content>
+               </ScrollPane>
+               <Text layoutX="32.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TransformationMainFrame" />
+               <Text layoutX="271.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object" wrappingWidth="94.13671875" />
+               <Text layoutX="692.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action" />
+               <Text layoutX="421.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Color" />
+               <Button fx:id="transremove" layoutX="191.0" layoutY="422.0" mnemonicParsing="false" text="remove" />
+               <Button fx:id="removeobject" layoutX="612.0" layoutY="595.0" mnemonicParsing="false" text="remove" />
+               <TextField fx:id="name" layoutX="72.0" layoutY="55.0" />
+               <Text layoutX="72.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+               <TextField fx:id="hotkey" layoutX="582.0" layoutY="55.0" prefHeight="25.0" prefWidth="86.0" />
+               <Text layoutX="582.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hotkey" />
+               <Button layoutX="908.0" layoutY="185.0" mnemonicParsing="false" text="remove" />
+               <TextField layoutX="271.0" layoutY="123.0" prefHeight="25.0" prefWidth="47.0" />
+               <TextField layoutX="325.0" layoutY="123.0" prefHeight="25.0" prefWidth="48.0" />
+               <TextField layoutX="379.0" layoutY="123.0" prefHeight="25.0" prefWidth="41.0" />
+               <TextField layoutX="271.0" layoutY="166.0" prefHeight="25.0" prefWidth="47.0" />
+               <TextField layoutX="325.0" layoutY="166.0" prefHeight="25.0" prefWidth="48.0" />
+               <TextField layoutX="379.0" layoutY="166.0" prefHeight="25.0" prefWidth="41.0" />
+               <TextField layoutX="271.0" layoutY="203.0" prefHeight="25.0" prefWidth="47.0" />
+               <TextField layoutX="325.0" layoutY="203.0" prefHeight="25.0" prefWidth="48.0" />
+               <TextField layoutX="379.0" layoutY="203.0" prefHeight="25.0" prefWidth="41.0" />
+               <Text layoutX="291.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
+               <Text layoutX="346.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y" />
+               <Text layoutX="396.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Z" />
+               <Text layoutX="229.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value1" />
+               <Text layoutX="229.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value2" />
+               <Text layoutX="229.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value3" />
+               <Text layoutX="664.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" />
+               <TextField layoutX="709.0" layoutY="98.0" />
+            </children></AnchorPane>
+        </Scene>
+    </scene>
+</Stage>
