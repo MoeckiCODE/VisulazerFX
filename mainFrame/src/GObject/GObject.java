@@ -16,5 +16,9 @@ public class GObject {
     public void addtoList(){
         System.out.println("test");
     }
+
+    public void setValues(ArrayList<Double> values) {
+        this.values = values;
+    }
 }
 

@@ -1,3 +1,5 @@
+package fxEngine;
+
 import Action.Action;
 
 import GObject.GObject;
@@ -12,11 +14,10 @@ import javafx.stage.Stage;
 
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 
 public class fxEngine extends Application implements fxEngineInterface {
-    GObject cube = new GObject("Cube", 1);
+    GObject cube = new GObject("fxEngine.Cube", 1);
     Action move = new Action("Move", 1);
     Action setColor = new Action("setColor", 2);
 
@@ -26,12 +27,12 @@ public class fxEngine extends Application implements fxEngineInterface {
     long start;
     int counter;
     public int fps;
-    boolean stop;
+    public static boolean runs = false;
     private int boxmax;
     ArrayList<Cube> cubes = new ArrayList<>();
     ArrayList<Cube> boxesuse = new ArrayList<>();
-    Scene scene;
-    Group group;
+    static Scene scene;
+    static Group group;
 
     @Override
     public void start(Stage primaryStage) {
@@ -51,20 +52,23 @@ public class fxEngine extends Application implements fxEngineInterface {
         primaryStage.setTitle("Visulazer");
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setFullScreen(true);
+      //  primaryStage.setFullScreen(true);
         start = System.currentTimeMillis();
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-          if(!boxesuse.isEmpty())
+          if(!boxesuse.isEmpty()){
                 boxesuse.forEach(box1 -> {
                     box1.move();
                 });
             }
+              //  System.out.println("test");
+                }
         };
-        timer.start();
 
+        timer.start();
+        runs = true;
     }
 
     @Override
@@ -127,6 +131,10 @@ public class fxEngine extends Application implements fxEngineInterface {
         });
 
 
+    }
+    @Override
+    public fxEngine givetheEngine(){
+        return this;
     }
 
 

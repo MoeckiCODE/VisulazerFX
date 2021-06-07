@@ -6,8 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="mainFrame" />
+    <orderEntry type="library" scope="RUNTIME" name="lib" level="application" />
     <orderEntry type="library" name="lib" level="application" />
+    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

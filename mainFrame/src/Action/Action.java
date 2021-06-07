@@ -22,4 +22,8 @@ public class Action {
     public ArrayList<Double> getValues() {
         return values;
     }
+
+    public void setValues(ArrayList<Double> tmp) {
+        values = tmp;
+    }
 }

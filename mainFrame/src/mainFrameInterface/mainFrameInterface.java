@@ -1,3 +1,5 @@
+package mainFrameInterface;
+
 import AOC.AOC;
 import Action.Action;
 import GObject.GObject;

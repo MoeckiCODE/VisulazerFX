@@ -1,3 +1,5 @@
+package fxEngine;
+
 import Action.Action;
 import GObject.GObject;
 
@@ -7,7 +9,7 @@ public interface fxEngineInterface {
 
     /**
      *
-     * @return returns all actions given by the fxEngine
+     * @return returns all actions given by the fxEngine.fxEngine
      */
     ArrayList<Action> getActions();
 
@@ -25,9 +27,10 @@ public interface fxEngineInterface {
 
     /**
      *
-     * @return returns all GObjects given by the fxEngine
+     * @return returns all GObjects given by the fxEngine.fxEngine
      */
     ArrayList<GObject> getGObjects();
 
     void doAcion(GObject gObjects, ArrayList<Action> actions);
+    fxEngine givetheEngine();
 }
