@@ -1,8 +1,8 @@
-module gUI {
-    exports gUI;
-    opens gUI;
-    requires DataTypes;
-    requires mainFrame;
+module DataTypes {
+    exports Action;
+    exports AOC;
+    exports GObject;
+    exports Transformation;
     requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;

@@ -1,4 +1,6 @@
 module transformation {
-    requires mainFrame;
-    
+    exports TransformationTrans;
+    requires DataTypes;
+    requires minim;
+
 }

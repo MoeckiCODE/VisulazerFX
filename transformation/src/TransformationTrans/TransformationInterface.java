@@ -9,7 +9,7 @@ public interface TransformationInterface {
      *
      * @return all Transformations known by Transformationmodule
      */
-    ArrayList<Transformation> getTransformationMainFrame();
+    ArrayList<Transformation> getTransformationTOMainFrame();
 
     /**
      *
@@ -21,11 +21,11 @@ public interface TransformationInterface {
      *
      * @return true if the start was successfully
      */
-    boolean start();
+    void startup();
 
     /**
      *
      * @return true if the stop was successfully
      */
-    boolean stop();
+    void stopit();
 }

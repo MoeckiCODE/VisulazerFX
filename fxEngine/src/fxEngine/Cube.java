@@ -29,14 +29,14 @@ public class Cube {
     double maxy;
     javafx.scene.shape.Box box;
     Group grp;
-
+    boolean doamove = false;
     public Cube(double s, Scene bla, Group grp, Integer id, double x, double y, double z){
         this.id = id;
         this.grp = grp;
         this.bla = bla;
-        color[0] = random();
-        color[1] = random();
-        color[2] =  random();
+        color[0] = 1;
+        color[1] = 1;
+        color[2] = 1;
         size = s;
         halfsize = size/2;
         box = new javafx.scene.shape.Box(size, size, size);
@@ -67,7 +67,26 @@ public class Cube {
 
 
     }
+public void translate(){
+    box.setTranslateX(x);
+    box.setTranslateY(y);
+    box.setTranslateZ(z);
 
+}
+public void setColor(Color c){
+    PhongMaterial mat = new PhongMaterial();
+    mat.setSpecularColor(c);
+    mat.setDiffuseColor(c);
+    box.setMaterial(mat);
+}
+public void change(){
+    box.setTranslateX(x);
+    box.setTranslateY(y);
+    box.setTranslateZ(z);
+    box.setDepth(size);
+    box.setHeight(size);
+    box.setWidth(size);
+}
     public void collide(ArrayList<Cube> boxes){
         boxes.forEach(box -> {
             if(box != this){
@@ -95,8 +114,18 @@ public class Cube {
                 (b1.miny <= b2.maxy && b1.maxy >= b2.miny) &&
                 (b1.minz <= b2.maxz && b1.maxz >= b2. minz));
     }
+    public void changecolor(){
+
+        PhongMaterial mat = new PhongMaterial();
+        mat.setSpecularColor(Color.color(color[0], color[1],  color[2]));
+        mat.setDiffuseColor(Color.color(color[0], color[1],  color[2]));
+        box.setMaterial(mat);
+    }
 
     public void move(){
+
+
+
         x = x + deltax;
         y = y + deltay;
         z = z + deltaz;
@@ -110,13 +139,16 @@ public class Cube {
         box.setTranslateX(x);
         box.setTranslateY(y);
         box.setTranslateZ(z);
-
-        if(maxx> bla.getWidth()   || minx < 1)
-            deltax = deltax * -1;
+        deltax = 0;
+        deltay = 0;
+        deltax = 0;
+      /*  if(maxx> bla.getWidth()   || minx < 1)
+            deltax deltax * -1
         if(maxy > bla.getHeight() || miny < 1)
             deltay = deltay * -1;
         if(maxz > 10|| minz < -3000)
-            deltaz = deltaz * -1;
+            deltaz = deltaz * -1;*/
 
+        doamove =false;
     }
 }

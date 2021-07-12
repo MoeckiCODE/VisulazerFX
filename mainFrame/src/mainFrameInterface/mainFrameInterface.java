@@ -3,6 +3,7 @@ package mainFrameInterface;
 import AOC.AOC;
 import Action.Action;
 import GObject.GObject;
+import Logic.Logic;
 import Transformation.Transformation;
 
 import java.util.ArrayList;
@@ -53,8 +54,12 @@ public interface mainFrameInterface {
      */
     AOC getAoc(String name);
 
+    void start();
+
     ArrayList<Double> getSignal();
 
-
+void startup();
+void stopit();
+void removeAOC(AOC aoc);
 
 }

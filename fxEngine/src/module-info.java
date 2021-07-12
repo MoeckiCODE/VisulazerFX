@@ -2,10 +2,9 @@ import javax.security.auth.login.LoginContext;
 
 module fxEngine {
 
-
     exports  fxEngine;
 
-    requires mainFrame;
+    requires DataTypes;
     requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;

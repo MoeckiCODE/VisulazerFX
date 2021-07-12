@@ -1,6 +1,10 @@
 module mainFrame {
-    exports GObject;
-    exports Action;
-    exports Transformation;
+
+    requires logic;
+    requires fxEngine;
+    requires DataTypes;
+    requires transformation;
+    exports mainFrameInterface;
+
 
 }

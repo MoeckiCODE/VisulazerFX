@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DataTypes/DataTypes.iml" filepath="$PROJECT_DIR$/DataTypes/DataTypes.iml" />
       <module fileurl="file://$PROJECT_DIR$/fxEngine/fxEngine.iml" filepath="$PROJECT_DIR$/fxEngine/fxEngine.iml" />
       <module fileurl="file://$PROJECT_DIR$/gUI/gUI.iml" filepath="$PROJECT_DIR$/gUI/gUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/logic/logic.iml" filepath="$PROJECT_DIR$/logic/logic.iml" />

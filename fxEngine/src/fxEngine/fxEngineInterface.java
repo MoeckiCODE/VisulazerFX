@@ -2,6 +2,7 @@ package fxEngine;
 
 import Action.Action;
 import GObject.GObject;
+import javafx.scene.Scene;
 
 import java.util.ArrayList;
 
@@ -32,5 +33,5 @@ public interface fxEngineInterface {
     ArrayList<GObject> getGObjects();
 
     void doAcion(GObject gObjects, ArrayList<Action> actions);
-    fxEngine givetheEngine();
+     Scene givetheEngine();
 }

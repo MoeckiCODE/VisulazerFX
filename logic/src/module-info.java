@@ -2,8 +2,9 @@ module logic {
   exports Logic;
 
 
-   requires fxEngine;
-    requires mainFrame;
+    requires fxEngine;
+
+    requires DataTypes;
     requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
