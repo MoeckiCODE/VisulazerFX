@@ -41,8 +41,21 @@ public class Action {
 
 
 
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Action tmp = (Action) obj;
+        if(id == tmp.id)
+            return true;
 
 
+        return false;
+    };
     public String getHotkey() {
         return hotkey;
     }

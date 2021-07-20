@@ -3,6 +3,7 @@ package gUI;
 import AOC.AOC;
 import Action.Action;
 import GObject.GObject;
+import Transformation.Transformation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,13 +40,13 @@ public class Controller {
         @FXML
         private Button actionadd;
         @FXML
-        private ChoiceBox<?> transformation;
+        private ChoiceBox<Transformation> transformation;
         @FXML
         private Button transadd;
         @FXML
         private Button objectadd;
         @FXML
-        private AnchorPane translist;
+        private ListView translist;
         @FXML
         private ScrollPane scrollAction;
         @FXML
@@ -111,12 +112,14 @@ public class Controller {
     ArrayList<AOC> aocs;
     private boolean previewb;
 
-
+//TODO just display action that the object can actually use
     public void initialize() {
             ObservableList<Action> al = FXCollections.observableArrayList(Main.actions);
             action.setItems(al);
             ObservableList<GObject> gl = FXCollections.observableArrayList(Main.gObjects);
             object.setItems(gl);
+        ObservableList<Transformation> tf = FXCollections.observableArrayList(Main.transformations);
+        transformation.setItems(tf);
             object.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
@@ -162,6 +165,9 @@ public class Controller {
                 Main.mainframe.saveallAOC(aocs);
                 previebutton.setDisable(true);
             }
+            ArrayList<Transformation> transformations = new ArrayList<>();
+            transformations.addAll(translist.getItems());
+            Main.mainframe.setTransformation(transformations);
             Main.mainframe.startup();
             startbutton.setText("Stop");
             started = true;
@@ -215,8 +221,12 @@ public class Controller {
     public void preparelistforeddit(ArrayList<String> nfv, ArrayList<Double> nfvd, TextField tf, int index){
         if(nfv.get(index) == "null")
             setTexttoField(nfv.get(index), tf);
-        else
-            setTexttoField(nfvd.remove(0).toString(), tf);
+        else if(nfvd.get(0) == null) {
+            setTexttoField("i", tf);
+            nfvd.remove(0);
+        }else
+        setTexttoField(nfvd.remove(0).toString(), tf);
+
     }
     public void setValuesforObject(){
 
@@ -238,6 +248,7 @@ public class Controller {
                 setTexttoField(nfv.get(7), ov8);
                 setTexttoField(nfv.get(8), ov9);
             }else{
+                System.out.println(object.getValue());
                 ArrayList<Double> nfvd = object.getValue().values;
                 preparelistforeddit(nfv, nfvd, ov1, 0);
                 preparelistforeddit(nfv, nfvd, ov2, 1);
@@ -269,12 +280,12 @@ public class Controller {
             if(nfv.get(0) == "color Picker"){
                 color1.setDisable(false);
                 av1.setDisable(true);
-            }else av1.setDisable(false);
+            }else color1.setDisable(true);
             if(nfv.get(1) == "color Picker"){
                 color2.setDisable(false);
                 av2.setDisable(true);
 
-            }else av2.setDisable(false);
+            }else color2.setDisable(true);
         }else{
             ArrayList<Double> valuesforeddit = action.getValue().getValues();
             if(nfv.get(1) == "color Picker"){
@@ -304,7 +315,22 @@ public class Controller {
             textField.setDisable(true);
         }
     }
+    public void addTransformation(){
+        if(transformation.getValue() != null){
+            Transformation newtrans = new Transformation(transformation.getValue().getTransformationName(), transformation.getValue().getId());
+            translist.getItems().add(newtrans);
 
+        }
+
+    }
+    public void removeTransformation(){
+        if(!translist.getItems().isEmpty()){
+            Transformation toberemoved = (Transformation) translist.getSelectionModel().getSelectedItems().get(0);
+            translist.getItems().remove(toberemoved);
+
+
+        }
+    }
     public void addActiontoAOC(){
 
                 if(action.getValue() != null && !actionlist.getItems().contains(action.getValue())) {
@@ -317,7 +343,7 @@ public class Controller {
                         newaction.setColers(tmp);
                         valuesforaction.add(Double.parseDouble(av3.getText()));
                         newaction.setValues(valuesforaction);
-                    }else {
+                    }else if(!av1.getText().isEmpty()) {
                         valuesforaction.add(Double.parseDouble(av1.getText()));
                         valuesforaction.add(Double.parseDouble(av2.getText()));
                         valuesforaction.add(Double.parseDouble(av3.getText()));
@@ -378,24 +404,61 @@ public class Controller {
             }
         });
         ArrayList<Double> tmp = new ArrayList<>();
-        if(!ov1.getText().isEmpty())
-                tmp.add(Double.parseDouble(ov1.getText()));
-        if(!ov2.getText().isEmpty())
-                tmp.add(Double.parseDouble(ov2.getText()));
-        if(!ov3.getText().isEmpty())
+        if(!ov1.getText().isEmpty()) {
+            if(ov1.getText().contains("i"))
+                tmp.add(null);
+            else
+              //  System.out.println(ov1.getText());
+            tmp.add(Double.parseDouble(ov1.getText()));
+        }
+        if(!ov2.getText().isEmpty()) {
+            if(ov2.getText().contains("i"))
+                tmp.add(null);
+            else
+            tmp.add(Double.parseDouble(ov2.getText()));
+        }
+        if(!ov3.getText().isEmpty()){
+            if(ov3.getText().contains("i"))
+                tmp.add(null);
+            else
                     tmp.add(Double.parseDouble(ov3.getText()));
-        if(!ov4.getText().isEmpty())
+}
+        if(!ov4.getText().isEmpty()){
+            if(ov4.getText().contains("i"))
+                tmp.add(null);
+            else
                     tmp.add(Double.parseDouble(ov4.getText()));
-        if(!ov5.getText().isEmpty())
+}
+        if(!ov5.getText().isEmpty()){
+            if(ov5.getText().contains("i"))
+                tmp.add(null);
+            else
                     tmp.add(Double.parseDouble(ov5.getText()));
-        if(!ov6.getText().isEmpty())
+        }
+        if(!ov6.getText().isEmpty()){
+            if(ov6.getText().contains("i"))
+                tmp.add(null);
+            else
                     tmp.add(Double.parseDouble(ov6.getText()));
-        if(!ov7.getText().isEmpty())
+        }
+        if(!ov7.getText().isEmpty()){
+            if(ov7.getText() == "i")
+                tmp.add(null);
+            else
                     tmp.add(Double.parseDouble(ov7.getText()));
-        if(!ov8.getText().isEmpty())
+        }
+        if(!ov8.getText().isEmpty()){
+            if(ov8.getText().contains("i"))
+                tmp.add(null);
+            else
                     tmp.add(Double.parseDouble(ov8.getText()));
-        if(!ov9.getText().isEmpty())
+        }
+        if(!ov9.getText().isEmpty()){
+            if(ov9.getText().contains("i"))
+                tmp.add(null);
+            else
                     tmp.add(Double.parseDouble(ov9.getText()));
+        }
 
 
         boolean dontsave = true;
@@ -421,6 +484,8 @@ if(!aoc.name.equals(tmp2)) {
         aoc.actions = actionsforobject;
         aoc.setHotleyActions(hotkeyActionsforobject);
         aoc.gObject.setValues(tmp);
+        if(!
+                aocs.contains(aoc))
         aocs.add(aoc);
         //System.out.println(Main.mainframe.saveAOC(aoc));
 

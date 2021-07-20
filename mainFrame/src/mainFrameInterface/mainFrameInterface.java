@@ -14,13 +14,15 @@ public interface mainFrameInterface {
      * @param transformation Transformation thats added to the Signalflow
      * @return true if successfully
      */
-    boolean addTransformation(Transformation transformation);
+    public void setTransformation(ArrayList<Transformation> transformations);
 
     /**
      *
      * @return returns all transformations known
      */
     ArrayList<Transformation> getTransformations();
+
+    public void removeTransformetion(Transformation trans);
 
     /**
      *

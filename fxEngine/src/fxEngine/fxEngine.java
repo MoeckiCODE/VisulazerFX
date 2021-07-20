@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class fxEngine  implements fxEngineInterface {
@@ -28,6 +29,10 @@ public class fxEngine  implements fxEngineInterface {
     static Action setColor = new Action("setColor", 2);
     static Action translate = new Action("changes", 3);
 
+    static Action changeX1 = new Action("fxEngine.changeX1", 7) ; //X1
+    static Action changeY1 = new Action("fxEngine.changeY1", 8); //Y2
+    static Action changeX2 = new Action("fxEngine.changeX2", 9); //X2
+    static Action changeY2 = new Action("fxEngine.changeY2", 10); //Y2
 
     private static final float WIDTH = 1280;
     private static final float HEIGHT = 720;
@@ -42,6 +47,14 @@ public class fxEngine  implements fxEngineInterface {
     static Scene scene;
     static Group group;
     Stage stage;
+
+    public static float getWIDTH() {
+        return WIDTH;
+    }
+
+    public static float getHEIGHT() {
+        return HEIGHT;
+    }
 
     public fxEngine() {
         ArrayList<String> nfv = new ArrayList<>();
@@ -59,17 +72,6 @@ public class fxEngine  implements fxEngineInterface {
         cube.setNameforValues(nfv);
 
         nfv = new ArrayList<>();
-        nfv.add("Speed X");
-        nfv.add("Speed Y");
-        nfv.add("Speed Z");
-        move.setNameForValues(nfv);
-        nfv = new ArrayList<>();
-        nfv.add("R");
-        nfv.add("G");
-        nfv.add("B");
-        setColor.setNameForValues(nfv);
-
-        nfv = new ArrayList<>();
         nfv.add("X1");
         nfv.add("Y1");
         nfv.add("null");
@@ -81,6 +83,26 @@ public class fxEngine  implements fxEngineInterface {
         nfv.add("null");
         nfv.add("null");
         nfv.add("null");
+        line.setNameforValues(nfv);
+        nfv = new ArrayList<>();
+        nfv.add("Speed X");
+        nfv.add("Speed Y");
+        nfv.add("Speed Z");
+        move.setNameForValues(nfv);
+        nfv = new ArrayList<>();
+        nfv.add("R");
+        nfv.add("G");
+        nfv.add("B");
+        setColor.setNameForValues(nfv);
+        nfv = new ArrayList<>();
+        nfv.add("Value");
+        nfv.add("null");
+        nfv.add("null");
+        changeY1.setNameForValues(nfv);
+        changeY2.setNameForValues(nfv);
+        changeX1.setNameForValues(nfv);
+        changeX2.setNameForValues(nfv);
+
     }
     /* @Override
     public void start(Stage primaryStage) {
@@ -125,6 +147,10 @@ public class fxEngine  implements fxEngineInterface {
         ArrayList<Action> tmp = new ArrayList<>();
         tmp.add(move);
         tmp.add(setColor);
+        tmp.add(changeX1);
+        tmp.add(changeY1);
+        tmp.add(changeX2);
+        tmp.add(changeY2);
         return tmp;
 
 
@@ -198,6 +224,7 @@ public class fxEngine  implements fxEngineInterface {
     public ArrayList<GObject> getGObjects() {
         ArrayList<GObject> tmp = new ArrayList<>();
         tmp.add(cube);
+        tmp.add(line);
         return tmp;
     }
 
@@ -214,18 +241,64 @@ public class fxEngine  implements fxEngineInterface {
    }
     }
     private void doActionForLine(GObject gObject, ArrayList<Action> actions){
-        Integer id = gObject.id;
-        if (!(cubes.size() >= gObject.id)) {
-            cubes.add(new Cube(gObject.values.get(0), scene, group, gObject.id, gObject.values.get(1), gObject.values.get(2), gObject.values.get(3)));
-            System.out.println("Line");
-        }
 
+      /*  if (!(cubes.size() >= gObject.id)) {
+            cubes.add(new Line(gObject.values.get(0), gObject.values.get(1), gObject.values.get(2), gObject.values.get(3), scene, group));
+            System.out.println("new Line");
+        }*/
+        Integer id = gObject.id;
+        AtomicInteger index = new AtomicInteger(-1);
+        cubes.forEach(cu ->{
+            Line tmp = (Line)cu;
+            if(tmp.id == id)
+                index.set(cubes.indexOf(cu));
+        });
+        if (!(cubes.size() >= gObject.id) && index.get() == -1) { //if (!(cubes.size() >= gObject.id))
+            Line tmpnew = new Line(gObject.values.get(0), gObject.values.get(1), gObject.values.get(2), gObject.values.get(3), gObject.id, scene, group);
+            cubes.add(tmpnew);
+            index.set(cubes.indexOf(tmpnew));
+            System.out.println("new line");
+        }
+        Line l = (Line) cubes.get(id-1);
+        actions.forEach(action -> {
+           // System.out.println(action.getValues().get(0));
+            switch (action.getId()){
+                case 7:
+
+                    l.setX1(action.getValues().get(0));
+                    break;
+                case 8:
+                    l.setY1(action.getValues().get(0));
+                    break;
+                case 9:
+                    l.setX2(action.getValues().get(0));
+                    break;
+                case 10:
+                    l.setY2(action.getValues().get(0));
+                    break;
+            }
+
+
+
+
+        });
+
+      //  Line l = (Line) cubes.get(id-1);
+//TODO change, remove
     }
 
     private void doActionForCube(GObject gObject, ArrayList<Action> actions){
         Integer id = gObject.id;
-        if (!(cubes.size() >= gObject.id)) {
-            cubes.add(new Cube(gObject.values.get(0), scene, group, gObject.id, gObject.values.get(1), gObject.values.get(2), gObject.values.get(3)));
+        AtomicInteger index = new AtomicInteger(-1);
+        cubes.forEach(cu ->{
+            Cube tmp = (Cube)cu;
+            if(tmp.id == id)
+                index.set(cubes.indexOf(cu));
+        });
+        if (!(cubes.size() >= gObject.id) && index.get() == -1) { //if (!(cubes.size() >= gObject.id))
+            Cube tmpnew = new Cube(gObject.values.get(0), scene, group, gObject.id, gObject.values.get(1), gObject.values.get(2), gObject.values.get(3));
+            cubes.add(tmpnew);
+            index.set(cubes.indexOf(tmpnew));
             System.out.println("new cube");
         }
         Cube c = (Cube)cubes.get(id - 1);
@@ -267,7 +340,6 @@ ArrayList<Action> actionremove = new ArrayList<>();
                     c.z = gObject.values.get(3);
                     c.size = gObject.values.get(0);
                    action.id = -1;
-
                    c.change();
                     break;
                 case 5:

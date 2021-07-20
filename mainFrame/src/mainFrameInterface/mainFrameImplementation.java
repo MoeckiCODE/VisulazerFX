@@ -30,13 +30,14 @@ public class mainFrameImplementation implements mainFrameInterface {
 
 
     @Override
-    public boolean addTransformation(Transformation transformation) {
-        if(!transformations.contains(transformation))
+    public void setTransformation(ArrayList<Transformation> newtransformations) {
+        transformations = newtransformations;
+        /*if(!transformations.contains(transformation))
             transformations.add(transformation);
         if(transformations.contains(transformation))
             return true;
         else
-            return false;
+            return false;*/
     }
 
     @Override
@@ -60,6 +61,10 @@ public class mainFrameImplementation implements mainFrameInterface {
     @Override
     public void removeAOC(AOC aoc){
         aocs.remove(aoc);
+    }
+    @Override
+    public void  removeTransformetion(Transformation trans){
+        transformations.remove(trans);
     }
 public void saveallAOC(ArrayList<AOC> aocs){
     if(this.aocs == null)
@@ -121,6 +126,7 @@ public void saveallAOC(ArrayList<AOC> aocs){
     public void start() {
 
         log.initiate(log);
+        transformations.addAll(trans.getTransformationTOMainFrame());
         actions.addAll(log.getActions());
         gObjects.addAll(log.getGObjects());
 
@@ -133,10 +139,15 @@ public void saveallAOC(ArrayList<AOC> aocs){
 
     @Override
     public void startup() {
+
+        if(transformations != null && !transformations.isEmpty()) {
+            trans.setTransformations(transformations);
+            trans.startup();
+        }
         log.setAOCs(aocs);
         log.setTransformation(transformations);
         log.start(log);
-        trans.startup();
+
     }
 
     public void view(){

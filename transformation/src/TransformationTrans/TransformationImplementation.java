@@ -62,13 +62,15 @@ public class TransformationImplementation extends Thread implements Transformati
                     case 1 :
                         fft.forward(input.mix);
                         transformation.setSpecsize(fft.specSize());
+                        transformation.setSpecsize(fft.specSize());
                         ArrayList tmp = new ArrayList();
-                        for (int i = 0; i < fft.specSize(); i++) {
+                        for (int i = 0; i <= fft.specSize(); i++) {
                             tmp.add(fft.getBand(i));
-
                         }
                         transformation.setValues(tmp);
-
+                    break;
+                    default:
+                        break;
                 }
 
 

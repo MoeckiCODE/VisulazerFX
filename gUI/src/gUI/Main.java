@@ -2,6 +2,7 @@ package gUI;
 
 import Action.Action;
 import GObject.GObject;
+import Transformation.Transformation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,7 @@ import java.util.Comparator;
 public class Main extends Application {
     public static ArrayList<Action> actions = new ArrayList<>();
     public static ArrayList<GObject> gObjects = new ArrayList<>();
+    public static ArrayList<Transformation> transformations = new ArrayList<>();
     public  static mainFrameImplementation mainframe;
 
     @Override
@@ -25,6 +27,7 @@ public class Main extends Application {
         mainframe.start();
         actions.addAll(mainframe.getActions());
         gObjects = mainframe.getGObjects();
+        transformations = mainframe.getTransformations();
 
         Collections.sort(actions, new Comparator<Action>() {
             @Override

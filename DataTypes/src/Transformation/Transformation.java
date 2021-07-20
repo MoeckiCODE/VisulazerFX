@@ -31,6 +31,7 @@ public class Transformation {
     public Integer getId() {
         return id;
     }
+
     public int getSpecsize() {
         return specsize;
     }
@@ -41,4 +42,10 @@ public class Transformation {
     public synchronized void  setValues(ArrayList<Double> values) {
         this.values = values;
     }
+
+    @Override
+    public String toString(){
+        return transformationName + " ID:" + id;
+    }
 }
+

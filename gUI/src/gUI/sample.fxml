@@ -19,17 +19,12 @@
       <ChoiceBox fx:id="object" layoutX="261.0" layoutY="55.0" prefWidth="150.0" />
       <Button fx:id="actionadd" layoutX="1067.0" layoutY="55.0" mnemonicParsing="false" onAction="#addActiontoAOC" text="add" />
       <ChoiceBox fx:id="transformation" layoutX="32.0" layoutY="254.0" prefWidth="150.0" />
-      <Button fx:id="transadd" layoutX="210.0" layoutY="254.0" mnemonicParsing="false" text="add" />
+      <Button fx:id="transadd" layoutX="210.0" layoutY="254.0" mnemonicParsing="false" onAction="#addTransformation" text="add" />
       <Button fx:id="objectadd" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#saveAOC" text="save" />
-      <ScrollPane layoutX="32.0" layoutY="293.0" prefHeight="122.0" prefWidth="215.0">
-                 <content>
-          <AnchorPane fx:id="translist" minHeight="0.0" minWidth="0.0" prefHeight="121.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
       <Text layoutX="32.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TransformationMainFrame" />
       <Text layoutX="271.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object" wrappingWidth="94.13671875" />
       <Text layoutX="910.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action" />
-      <Button fx:id="transremove" layoutX="191.0" layoutY="422.0" mnemonicParsing="false" text="remove" />
+      <Button fx:id="transremove" layoutX="193.0" layoutY="472.0" mnemonicParsing="false" onAction="#removeTransformation" text="remove" />
       <Button fx:id="removeobject" layoutX="698.0" layoutY="472.0" mnemonicParsing="false" onAction="#removeAOC" text="remove" />
       <TextField fx:id="name" layoutX="72.0" layoutY="55.0" />
       <Text layoutX="72.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
@@ -62,5 +57,10 @@
       <Button fx:id="edditAction" layoutX="1020.0" layoutY="391.0" mnemonicParsing="false" onAction="#edditAction" text="Eddit" />
       <ColorPicker fx:id="color1" layoutX="879.0" layoutY="112.0" prefHeight="25.0" prefWidth="77.0" />
       <ColorPicker fx:id="color2" layoutX="962.0" layoutY="112.0" prefHeight="25.0" prefWidth="80.0" />
+      <ScrollPane layoutX="26.0" layoutY="305.0" prefHeight="143.0" prefWidth="222.0">
+         <content>
+            <ListView fx:id="translist" prefHeight="137.0" prefWidth="223.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
