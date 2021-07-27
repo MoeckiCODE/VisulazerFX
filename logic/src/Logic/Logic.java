@@ -349,6 +349,7 @@ private void removedone(ArrayList<Action> actions){
 
         while (!fxint.runs ){
             try {
+
                 sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -358,6 +359,7 @@ private void removedone(ArrayList<Action> actions){
   while (fxint.runs && runs) {
 
       try {
+          //specify tickrate
           sleep(1);
       } catch (InterruptedException e) {
           e.printStackTrace();
