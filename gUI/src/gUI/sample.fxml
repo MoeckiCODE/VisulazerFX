@@ -16,12 +16,12 @@
       <Button fx:id="previebutton" layoutX="899.0" layoutY="641.0" mnemonicParsing="false" onAction="#preview" text="Preview" />
       <Button fx:id="settings" layoutX="32.0" layoutY="641.0" mnemonicParsing="false" text="Settings" />
       <ChoiceBox fx:id="action" layoutX="874.0" layoutY="55.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="object" layoutX="261.0" layoutY="55.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="object" layoutX="265.0" layoutY="55.0" prefWidth="150.0" />
       <Button fx:id="actionadd" layoutX="1067.0" layoutY="55.0" mnemonicParsing="false" onAction="#addActiontoAOC" text="add" />
       <ChoiceBox fx:id="transformation" layoutX="32.0" layoutY="254.0" prefWidth="150.0" />
       <Button fx:id="transadd" layoutX="210.0" layoutY="254.0" mnemonicParsing="false" onAction="#addTransformation" text="add" />
       <Button fx:id="objectadd" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#saveAOC" text="save" />
-      <Text layoutX="32.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TransformationMainFrame" />
+      <Text layoutX="32.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Analyse" wrappingWidth="44.0" />
       <Text layoutX="271.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object" wrappingWidth="94.13671875" />
       <Text layoutX="910.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action" />
       <Button fx:id="transremove" layoutX="193.0" layoutY="472.0" mnemonicParsing="false" onAction="#removeTransformation" text="remove" />
@@ -31,15 +31,15 @@
       <TextField fx:id="hotkey" layoutX="707.0" layoutY="55.0" prefHeight="25.0" prefWidth="86.0" />
       <Text layoutX="707.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hotkey" />
       <Button layoutX="1076.0" layoutY="391.0" mnemonicParsing="false" onAction="#removeAction" text="remove" />
-      <TextField fx:id="ov1" layoutX="248.0" layoutY="123.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="ov2" layoutX="330.0" layoutY="123.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="ov3" layoutX="411.0" layoutY="124.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="ov4" layoutX="248.0" layoutY="166.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="ov5" layoutX="330.0" layoutY="166.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="ov6" layoutX="411.0" layoutY="166.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="ov7" layoutX="248.0" layoutY="203.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="ov8" layoutX="330.0" layoutY="203.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="ov9" layoutX="411.0" layoutY="203.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov1" layoutX="265.0" layoutY="121.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov2" layoutX="347.0" layoutY="121.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov3" layoutX="428.0" layoutY="122.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov4" layoutX="265.0" layoutY="164.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov5" layoutX="347.0" layoutY="164.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov6" layoutX="428.0" layoutY="164.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov7" layoutX="265.0" layoutY="201.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov8" layoutX="347.0" layoutY="201.0" prefHeight="25.0" prefWidth="70.0" />
+      <TextField fx:id="ov9" layoutX="428.0" layoutY="201.0" prefHeight="25.0" prefWidth="70.0" />
       <TextField fx:id="av1" layoutX="879.0" layoutY="148.0" prefHeight="25.0" prefWidth="80.0" />
       <TextField fx:id="av2" layoutX="962.0" layoutY="148.0" prefHeight="25.0" prefWidth="80.0" />
       <TextField fx:id="av3" layoutX="1051.0" layoutY="148.0" prefHeight="25.0" prefWidth="77.0" />

@@ -139,9 +139,9 @@ public void change(){
         box.setTranslateX(x);
         box.setTranslateY(y);
         box.setTranslateZ(z);
-        deltax = 0;
+      /*  deltax = 0;
         deltay = 0;
-        deltax = 0;
+        deltax = 0;*/
       /*  if(maxx> bla.getWidth()   || minx < 1)
             deltax deltax * -1
         if(maxy > bla.getHeight() || miny < 1)

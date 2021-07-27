@@ -3,11 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DataTypes/DataTypes.iml" filepath="$PROJECT_DIR$/DataTypes/DataTypes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/analyses/analyses.iml" filepath="$PROJECT_DIR$/analyses/analyses.iml" />
       <module fileurl="file://$PROJECT_DIR$/fxEngine/fxEngine.iml" filepath="$PROJECT_DIR$/fxEngine/fxEngine.iml" />
       <module fileurl="file://$PROJECT_DIR$/gUI/gUI.iml" filepath="$PROJECT_DIR$/gUI/gUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/logic/logic.iml" filepath="$PROJECT_DIR$/logic/logic.iml" />
       <module fileurl="file://$PROJECT_DIR$/mainFrame/mainFrame.iml" filepath="$PROJECT_DIR$/mainFrame/mainFrame.iml" />
-      <module fileurl="file://$PROJECT_DIR$/transformation/transformation.iml" filepath="$PROJECT_DIR$/transformation/transformation.iml" />
     </modules>
   </component>
 </project>

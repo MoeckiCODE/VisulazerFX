@@ -3,7 +3,7 @@ package gUI;
 import AOC.AOC;
 import Action.Action;
 import GObject.GObject;
-import Transformation.Transformation;
+import Transformation.Analyse;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,13 +11,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import mainFrameInterface.mainFrameImplementation;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 
 public class Controller {
@@ -40,7 +37,7 @@ public class Controller {
         @FXML
         private Button actionadd;
         @FXML
-        private ChoiceBox<Transformation> transformation;
+        private ChoiceBox<Analyse> transformation;
         @FXML
         private Button transadd;
         @FXML
@@ -118,7 +115,7 @@ public class Controller {
             action.setItems(al);
             ObservableList<GObject> gl = FXCollections.observableArrayList(Main.gObjects);
             object.setItems(gl);
-        ObservableList<Transformation> tf = FXCollections.observableArrayList(Main.transformations);
+        ObservableList<Analyse> tf = FXCollections.observableArrayList(Main.analyses);
         transformation.setItems(tf);
             object.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -165,9 +162,14 @@ public class Controller {
                 Main.mainframe.saveallAOC(aocs);
                 previebutton.setDisable(true);
             }
-            ArrayList<Transformation> transformations = new ArrayList<>();
-            transformations.addAll(translist.getItems());
-            Main.mainframe.setTransformation(transformations);
+            if(aocs.isEmpty() && previewb){
+                aocs = new ArrayList<AOC>();
+                Main.mainframe.saveallAOC(aocs);
+            }
+
+            ArrayList<Analyse> analyses = new ArrayList<>();
+            analyses.addAll(translist.getItems());
+            Main.mainframe.setAnalyses(analyses);
             Main.mainframe.startup();
             startbutton.setText("Stop");
             started = true;
@@ -317,7 +319,7 @@ public class Controller {
     }
     public void addTransformation(){
         if(transformation.getValue() != null){
-            Transformation newtrans = new Transformation(transformation.getValue().getTransformationName(), transformation.getValue().getId());
+            Analyse newtrans = new Analyse(transformation.getValue().getTransformationName(), transformation.getValue().getId());
             translist.getItems().add(newtrans);
 
         }
@@ -325,7 +327,7 @@ public class Controller {
     }
     public void removeTransformation(){
         if(!translist.getItems().isEmpty()){
-            Transformation toberemoved = (Transformation) translist.getSelectionModel().getSelectedItems().get(0);
+            Analyse toberemoved = (Analyse) translist.getSelectionModel().getSelectedItems().get(0);
             translist.getItems().remove(toberemoved);
 
 
@@ -382,8 +384,9 @@ public class Controller {
 
     private void resetmainframe(){
         Main.mainframe = new mainFrameImplementation();
-        Main.mainframe.start();
-        aocs.forEach(aoc1 -> Main.mainframe.saveAOC(aoc1));
+        Main.mainframe.initiate();
+        Main.mainframe.saveallAOC(aocs);
+        //aocs.forEach(aoc1 -> Main.mainframe.saveAOC(aoc1));
 
     }
 

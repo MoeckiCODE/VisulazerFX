@@ -1,7 +1,7 @@
 package Logic;
 
 import AOC.AOC;
-import Transformation.Transformation;
+import Transformation.Analyse;
 import javafx.application.Platform;
 import Action.Action;
 import GObject.GObject;
@@ -16,12 +16,18 @@ import java.util.concurrent.atomic.AtomicReference;
 
 
 public class Logic extends Thread implements LogicInterface{
-//static Logic log;
+//Initiate Objects and Actions
+static Action display = new Action("Logic.Display", 0);
+static GObject spectrum = new GObject("Logic.SimpleSpectrum", 100);
+static Action dynamiccolor = new Action("Logic.DynamicColor.MeanColor", 11);
+static Action changeColor = new Action("Logic.ChangeColor", 6);
+static Action bc = new Action("Logic.BoderColision", 4);
+
 static fxEngine fxint;
 static ArrayList<Action> actions;
 static ArrayList<GObject> gObjects;
 static ArrayList<AOC> aocs;
-static ArrayList<Transformation> transformations;
+static ArrayList<Analyse> analyses;
 static Scene scene;
 static boolean runs = false;
     public void start(){
@@ -41,8 +47,8 @@ static boolean runs = false;
     }
 
     @Override
-    public void setTransformation(ArrayList<Transformation> trans){
-      transformations = trans;
+    public void setTransformation(ArrayList<Analyse> trans){
+      analyses = trans;
     }
 
     @Override
@@ -52,31 +58,32 @@ static boolean runs = false;
 
     @Override
     public void initiate(Logic log) {
-        Action display = new Action("Logic.Display", 0);
+        //Create Objects & Actions for logic
+
         ArrayList<String> nfv = new ArrayList<>();
         nfv.add("null");
         nfv.add("null");
         nfv.add("null");
         display.setNameForValues(nfv);
-        Action bc = new Action("Logic.BoderColision", 4);
+
         nfv = new ArrayList<>();
         nfv.add("null");
         nfv.add("null");
         nfv.add("null");
         bc.setNameForValues(nfv);
-        Action changeColor = new Action("Logic.ChangeColor", 6);
+
         nfv = new ArrayList<>();
         nfv.add("color Picker");
         nfv.add("color Picker");
         nfv.add("Speed");
         changeColor.setNameForValues(nfv);
-        Action dynamiccolor = new Action("Logic.DynamicColor.MeanColor", 11);
+
         nfv = new ArrayList<>();
         nfv.add("null");
         nfv.add("null");
         nfv.add("null");
         dynamiccolor.setNameForValues(nfv);
-        GObject spectrum = new GObject("Logic.SimpleSpectrum", 100);
+
         nfv = new ArrayList<>();
         nfv.add("X1");
         nfv.add("Y1");
@@ -157,9 +164,9 @@ if(action != null){
 }
 private Action dynamicColorChange(GObject go, ArrayList<Action> actions){
         if(go.name.contains("Cube")){
-    Transformation trans = transformations.get(0);
+    Analyse trans = analyses.get(0);
     ArrayList<Float> tmpList = new ArrayList<>();
-    tmpList.addAll(transformations.get(0).getValues());
+    tmpList.addAll(analyses.get(0).getValues());
     double maxv = 0;
     float colorhsbvalue = 0;
     for (Integer i = 0; i < trans.getSpecsize(); i++) {
@@ -248,7 +255,10 @@ private void changecolor(GObject go, Action action){
 }
 
 private void doSpec(GObject go) {
-    Transformation trans = transformations.get(0);
+        //TODO just works for one analyses foreach needed to find the correct one
+    Analyse trans = analyses.get(0);
+    if(trans.getId() != 1)
+        return;
     //Construct the Objects for Spec/if there are no objectes created
     if(go.Objects == null) {
         //Creating Line for every Dirac in spec
@@ -343,7 +353,7 @@ private void removedone(ArrayList<Action> actions){
                 e.printStackTrace();
             }
         }
-
+        AtomicReference<String> key = new AtomicReference<>("420");
   while (fxint.runs && runs) {
 
       try {
@@ -355,24 +365,33 @@ private void removedone(ArrayList<Action> actions){
       Platform.runLater(() -> {
           scene = fxint.givetheEngine();
           //System.out.println(aocs.size());
+/*if(aocs == null)
+    aocs = new ArrayList<>();*/
 
+                  scene.setOnKeyPressed(keyEvent -> {
+                               key.set(keyEvent.getCode().getChar());
+                              System.out.println(key.get());
+                          });
           aocs.forEach(aoc -> {
               if(!fxint.runs)
                   return;
               GObject go =  aoc.gObject;
               ArrayList<Action> actions = aoc.actions;
-              scene.setOnKeyPressed(keyEvent -> {
+              /*scene.setOnKeyPressed(keyEvent -> {
                   String key = keyEvent.getCode().getChar();
-                  System.out.println(key);
+                  System.out.println(key);*/
+              if(key.get() != "420"){
                   aoc.getHotleyActions().forEach(hotkeyaction -> {
                       String hotkey = hotkeyaction.getHotkey();
-                      if(hotkey.equals(key)){
+                      if(hotkey.equals(key.get())){
                           System.out.println("does");
+                          key.set("420");
                           actions.add(hotkeyaction);
 
                       }
                   });
-              });
+              }
+             // });
 //              System.out.println(actions.contains(new Action("fxEngine.Move", 1)));
               if(actions.contains(new Action("Logic.Display", 0)))
               doLogicAction(go, actions);

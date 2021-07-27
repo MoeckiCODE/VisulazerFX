@@ -57,6 +57,7 @@ public class fxEngine  implements fxEngineInterface {
     }
 
     public fxEngine() {
+        //Create Action & Objecs for fxEngine
         ArrayList<String> nfv = new ArrayList<>();
         nfv.add("Size");
         nfv.add("null");
@@ -104,43 +105,7 @@ public class fxEngine  implements fxEngineInterface {
         changeX2.setNameForValues(nfv);
 
     }
-    /* @Override
-    public void start(Stage primaryStage) {
 
-        group = new Group();
-
-        Camera camera = new PerspectiveCamera();
-        scene = new Scene(group, WIDTH, HEIGHT);
-        scene.setFill(Color.BLACK);
-        scene.setCamera(camera);
-
-        group.translateXProperty().set(0);
-        group.translateYProperty().set(0);
-        group.translateZProperty().set(0);
-
-
-        primaryStage.setTitle("Visulazer");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-      //  primaryStage.setFullScreen(true);
-        start = System.currentTimeMillis();
-
-      AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-
-                boxesuse = cubes;
-          if(!boxesuse.isEmpty()){
-                boxesuse.forEach(box1 -> {
-                   // box1.move();
-                });
-            }
-              //  System.out.println("test");
-                }
-        };
-        timer.start();
-        runs = true;
-    }*/
 
     @Override
     public ArrayList<Action> getActions() {
@@ -175,7 +140,7 @@ public class fxEngine  implements fxEngineInterface {
         stage.setTitle("Visulazer");
         stage.setScene(scene);
         stage.show();
-        //  primaryStage.setFullScreen(true);
+
         start = System.currentTimeMillis();
 
 
@@ -185,14 +150,7 @@ public class fxEngine  implements fxEngineInterface {
 
                 if(!runs)
                     return;
-               // System.out.println(cubes.size());
-              /*  boxesuse = cubes;
-                if(!boxesuse.isEmpty()){
-                    boxesuse.forEach(box1 -> {
-                        // box1.move();
-                    });}*/
 
-                //System.out.println("test");
             }
         };
         timer.start();
@@ -242,26 +200,25 @@ public class fxEngine  implements fxEngineInterface {
     }
     private void doActionForLine(GObject gObject, ArrayList<Action> actions){
 
-      /*  if (!(cubes.size() >= gObject.id)) {
-            cubes.add(new Line(gObject.values.get(0), gObject.values.get(1), gObject.values.get(2), gObject.values.get(3), scene, group));
-            System.out.println("new Line");
-        }*/
+
         Integer id = gObject.id;
         AtomicInteger index = new AtomicInteger(-1);
         cubes.forEach(cu ->{
-            Line tmp = (Line)cu;
-            if(tmp.id == id)
-                index.set(cubes.indexOf(cu));
+            if(cu.getClass() == Line.class) {
+                Line tmp = (Line) cu;
+                if (tmp.id == id)
+                    index.set(cubes.indexOf(cu));
+            }
         });
-        if (!(cubes.size() >= gObject.id) && index.get() == -1) { //if (!(cubes.size() >= gObject.id))
+        if (index.get() == -1) { //if (!(cubes.size() >= gObject.id))
             Line tmpnew = new Line(gObject.values.get(0), gObject.values.get(1), gObject.values.get(2), gObject.values.get(3), gObject.id, scene, group);
             cubes.add(tmpnew);
             index.set(cubes.indexOf(tmpnew));
             System.out.println("new line");
         }
-        Line l = (Line) cubes.get(id-1);
+        Line l = (Line) cubes.get(index.get());
         actions.forEach(action -> {
-           // System.out.println(action.getValues().get(0));
+
             switch (action.getId()){
                 case 7:
 
@@ -283,7 +240,7 @@ public class fxEngine  implements fxEngineInterface {
 
         });
 
-      //  Line l = (Line) cubes.get(id-1);
+
 //TODO change, remove
     }
 
@@ -291,11 +248,13 @@ public class fxEngine  implements fxEngineInterface {
         Integer id = gObject.id;
         AtomicInteger index = new AtomicInteger(-1);
         cubes.forEach(cu ->{
-            Cube tmp = (Cube)cu;
-            if(tmp.id == id)
-                index.set(cubes.indexOf(cu));
+            if(cu.getClass() == Cube.class) {
+                Cube tmp = (Cube) cu;
+                if (tmp.id == id)
+                    index.set(cubes.indexOf(cu));
+            }
         });
-        if (!(cubes.size() >= gObject.id) && index.get() == -1) { //if (!(cubes.size() >= gObject.id))
+        if (index.get() == -1) { //if (!(cubes.size() >= gObject.id))
             Cube tmpnew = new Cube(gObject.values.get(0), scene, group, gObject.id, gObject.values.get(1), gObject.values.get(2), gObject.values.get(3));
             cubes.add(tmpnew);
             index.set(cubes.indexOf(tmpnew));
@@ -306,9 +265,9 @@ ArrayList<Action> actionremove = new ArrayList<>();
         actions.forEach(action -> {
             switch (action.getId()){
                 case 1:
-                    c.deltax = action.getValues().get(0)/10.0;
-                    c.deltay = action.getValues().get(1)/10.0;
-                    c.deltaz = action.getValues().get(2)/10.0;
+                    c.deltax = action.getValues().get(0)/10;
+                    c.deltay = action.getValues().get(1)/10;
+                    c.deltaz = action.getValues().get(2)/10;
                     c.move();
                     if(action.getHotkey() != "")
                     action.done = true;

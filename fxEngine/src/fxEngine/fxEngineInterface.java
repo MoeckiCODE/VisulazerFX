@@ -32,6 +32,16 @@ public interface fxEngineInterface {
      */
     ArrayList<GObject> getGObjects();
 
+    /**
+     *
+     * @param gObjects on with the actions should be executed
+     * @param actions that should be executed
+     */
     void doAcion(GObject gObjects, ArrayList<Action> actions);
+
+    /**
+     * !JUST NEEDED FOR HOTKEYIMPLEMENTATION!
+     * @return the scene of the Visulazer to execute Hotekeys
+     */
      Scene givetheEngine();
 }

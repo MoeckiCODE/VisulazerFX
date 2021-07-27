@@ -1,0 +1,15 @@
+module:analyses
+analyses
+module:DataTypes
+Action
+AOC
+GObject
+Transformation
+module:fxEngine
+fxEngine
+module:gUI
+gUI
+module:logic
+Logic
+module:mainFrame
+mainFrameInterface

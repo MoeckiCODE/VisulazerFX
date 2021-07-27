@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Transformation {
-    String transformationName;
-    Integer id;
+public class Analyse {
+    private String transformationName;
+    private Integer id;
     private List values;
 
 
@@ -18,7 +18,7 @@ public class Transformation {
         return values;
     }
 
-    public Transformation(String transformationName, Integer id) {
+    public Analyse(String transformationName, Integer id) {
         values = Collections.synchronizedList(new ArrayList<>());
         this.transformationName = transformationName;
         this.id = id;
@@ -39,6 +39,7 @@ public class Transformation {
     public void setSpecsize(int specsize) {
         this.specsize = specsize;
     }
+
     public synchronized void  setValues(ArrayList<Double> values) {
         this.values = values;
     }

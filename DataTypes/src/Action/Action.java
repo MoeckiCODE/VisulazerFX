@@ -12,7 +12,7 @@ public class Action {
    private  ArrayList<String> nameForValues;
     private ArrayList<Color> colers;
     public boolean done = false;
-
+    private String hotkey;
 
     public Action(String actionName, Integer id) {
         boolean done = false;
@@ -20,10 +20,13 @@ public class Action {
         this.id = id;
     }
     public Action(Action a){
-        this.values = a.values;
+        this.values = new ArrayList<>();
+        if(a.values != null)
+        this.values.addAll(a.values);
         this.actionName = a.actionName;
         this.id = a.id;
         this.nameForValues = a.nameForValues;
+        this.hotkey = a.getHotkey();
         if(a.colers != null ){
         this.colers = new ArrayList<>();
         colers.add(a.colers.get(0).deriveColor(0,1,1,1));
@@ -64,7 +67,7 @@ public class Action {
         this.hotkey = hotkey;
     }
 
-    private String hotkey;
+
 
     public Integer getId() {
         return id;

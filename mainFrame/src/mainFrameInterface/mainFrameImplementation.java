@@ -4,34 +4,37 @@ import AOC.AOC;
 import Action.Action;
 import GObject.GObject;
 import Logic.Logic;
-import Transformation.Transformation;
-import TransformationTrans.TransformationImplementation;
+import Transformation.Analyse;
+import analyses.AnalyseImplementation;
 
 
 import java.util.ArrayList;
 
 public class mainFrameImplementation implements mainFrameInterface {
 
-    private  static ArrayList<Transformation> transformations;
+    private  static ArrayList<Analyse> analyses;
     private static ArrayList<GObject> gObjects;
     private static ArrayList<Action> actions ;
     private  ArrayList<AOC> aocs;
     private static Logic log;
-    private static TransformationImplementation trans;
+    private static AnalyseImplementation analyse;
 
+    /**
+     * Construktor for mainframeimplementation
+     */
     public mainFrameImplementation() {
         gObjects = new ArrayList<GObject>();
         actions  = new ArrayList<Action>();
-        transformations = new ArrayList<Transformation>();
+        analyses = new ArrayList<Analyse>();
         log = new Logic();
-        trans = new TransformationImplementation();
+        analyse = new AnalyseImplementation();
     }
 
 
 
     @Override
-    public void setTransformation(ArrayList<Transformation> newtransformations) {
-        transformations = newtransformations;
+    public void setAnalyses(ArrayList<Analyse> newtransformations) {
+        analyses = newtransformations;
         /*if(!transformations.contains(transformation))
             transformations.add(transformation);
         if(transformations.contains(transformation))
@@ -41,9 +44,9 @@ public class mainFrameImplementation implements mainFrameInterface {
     }
 
     @Override
-    public ArrayList<Transformation> getTransformations() {
+    public ArrayList<Analyse> getTransformations() {
 
-        return transformations;
+        return analyses;
     }
 
     @Override
@@ -62,10 +65,12 @@ public class mainFrameImplementation implements mainFrameInterface {
     public void removeAOC(AOC aoc){
         aocs.remove(aoc);
     }
+
     @Override
-    public void  removeTransformetion(Transformation trans){
-        transformations.remove(trans);
+    public void  removeTransformetion(Analyse analyse){
+        analyses.remove(analyse);
     }
+    @Override
 public void saveallAOC(ArrayList<AOC> aocs){
     if(this.aocs == null)
         this.aocs = new ArrayList<AOC>();
@@ -92,7 +97,7 @@ public void saveallAOC(ArrayList<AOC> aocs){
             return true;
         else return false;
     }
-    public void removedoublevalues(AOC aoc){
+    private void removedoublevalues(AOC aoc){
 
         aocs.forEach(aoc1 -> {
             if(aoc1.toString() == aoc.toString())
@@ -123,39 +128,38 @@ public void saveallAOC(ArrayList<AOC> aocs){
     }
 
     @Override
-    public void start() {
+    public void initiate() {
 
         log.initiate(log);
-        transformations.addAll(trans.getTransformationTOMainFrame());
+        analyses.addAll(analyse.getAnalysesTOMainFrame());
         actions.addAll(log.getActions());
         gObjects.addAll(log.getGObjects());
 
     }
 
-    @Override
-    public ArrayList<Double> getSignal() {
-        return null;
-    }
+
 
     @Override
     public void startup() {
 
-        if(transformations != null && !transformations.isEmpty()) {
-            trans.setTransformations(transformations);
-            trans.startup();
+        if(analyses != null && !analyses.isEmpty()) {
+            analyse.setAnalyses(analyses);
+            analyse.startup();
         }
         log.setAOCs(aocs);
-        log.setTransformation(transformations);
+        log.setTransformation(analyses);
         log.start(log);
 
     }
-
+@Override
     public void view(){
         log.setAOCs(aocs);
     }
     @Override
     public void stopit(){
         log.stoplogic();
+        log = new Logic();
+        analyse.stopit();
 
     }
 }

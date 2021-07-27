@@ -5,25 +5,53 @@ import Action.Action;
 import GObject.GObject;
 import java.util.ArrayList;
 
-import Transformation.Transformation;
+import Transformation.Analyse;
 import fxEngine.fxEngine;
 public interface LogicInterface {
 
-public void addFxEngine(fxEngine fxE);
+void addFxEngine(fxEngine fxE);
 
-    public void setAOCs(ArrayList<AOC> aocs);
+    /**
+     * sets the Action Object Combinations on the Logic Module
+     * @param aocs to be executed
+     */
+    void setAOCs(ArrayList<AOC> aocs);
 
-    public void initiate(Logic log);
+    /**
+     * initiates the logic Module
+     * @param log
+     */
 
-    public void start(Logic log);
+    void initiate(Logic log);
 
-    public void stoplogic();
+    /**
+     * Startup of the logic Module
+     * @param log
+     */
+    void start(Logic log);
 
-    public ArrayList<Action> getActions();
+    /**
+     * Stops the logicmodule
+     */
+    void stoplogic();
 
-    public  ArrayList<GObject> getGObjects();
+    /**
+     *
+     * @return all actions the Logicmodule knows
+     */
+    ArrayList<Action> getActions();
 
-    public void setTransformation(ArrayList<Transformation> trans);
+    /**
+     *
+     * @return all objects the Logicmodule knows
+     */
+    ArrayList<GObject> getGObjects();
+
+    /**
+     *
+     * @param trans will be set to calculate objcets
+     */
+    void setTransformation(ArrayList<Analyse> trans);
 
 
 

@@ -11,6 +11,6 @@
     <orderEntry type="module" module-name="DataTypes" />
     <orderEntry type="module" module-name="logic" />
     <orderEntry type="module" module-name="fxEngine" />
-    <orderEntry type="module" module-name="transformation" />
+    <orderEntry type="module" module-name="analyses" />
   </component>
 </module>

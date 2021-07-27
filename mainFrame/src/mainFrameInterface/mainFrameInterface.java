@@ -3,26 +3,35 @@ package mainFrameInterface;
 import AOC.AOC;
 import Action.Action;
 import GObject.GObject;
-import Logic.Logic;
-import Transformation.Transformation;
+import Transformation.Analyse;
 
 import java.util.ArrayList;
 
+
 public interface mainFrameInterface {
-    /**
-     *
-     * @param transformation Transformation thats added to the Signalflow
-     * @return true if successfully
-     */
-    public void setTransformation(ArrayList<Transformation> transformations);
 
     /**
      *
-     * @return returns all transformations known
+     * @param aocs to be saved in the Mainframe also recreates all aocs and actions
      */
-    ArrayList<Transformation> getTransformations();
+    public void saveallAOC(ArrayList<AOC> aocs);
+    /**
+     * sets the aocs to logic douring runtime
+     */
+    void view();
+    /**
+     *
+     * @param analyses Analyses for Audiosignal
+     *
+     */
+    void setAnalyses(ArrayList<Analyse> analyses);
 
-    public void removeTransformetion(Transformation trans);
+    /**
+     *
+     * @return returns all signal analyses known
+     */
+    ArrayList<Analyse> getTransformations();
+
 
     /**
      *
@@ -54,14 +63,34 @@ public interface mainFrameInterface {
      * @param name name from the Object-Action-combination with is wanted
      * @return returns the Object-Action-combination for the specified name
      */
+
     AOC getAoc(String name);
 
-    void start();
+    /**
+     *
+     * @param analyse that should be removed
+     */
+    public void  removeTransformetion(Analyse analyse);
+    /**
+     * initiates the mainframe and the modules Logic, fxEngine
+     */
+    void initiate();
 
-    ArrayList<Double> getSignal();
 
-void startup();
-void stopit();
-void removeAOC(AOC aoc);
+    /**
+     * Starts the modules Logic, fxEngine and sets all Parameters
+     */
+    void startup();
+
+    /**
+     * stops the modules Logic and fxEngine
+     */
+    void stopit();
+
+    /**
+     *
+     * @param aoc aoc that should be removed
+     */
+    void removeAOC(AOC aoc);
 
 }

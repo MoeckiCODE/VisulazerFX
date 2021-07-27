@@ -1,68 +1,69 @@
-package TransformationTrans;
-import Transformation.Transformation;
+package analyses;
+import Transformation.Analyse;
 import ddf.minim.AudioInput;
 import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
-public class TransformationImplementation extends Thread implements TransformationInterface {
-    ArrayList<Transformation> transformations;
-    boolean runs = false;
-
-    Minim minim = new Minim(this);
-    AudioInput input = minim.getLineIn();
-    FFT fft = new FFT(input.bufferSize(), input.sampleRate());
+public class AnalyseImplementation extends Thread implements AnalyseInterface {
+    private ArrayList<Analyse> analyses;
+    private boolean runs = false;
+    private static Minim minim;
+    private static AudioInput input;
+    private static FFT fft;
 
 
 
-    public TransformationImplementation() {
-        transformations = new ArrayList<Transformation>();
+    public AnalyseImplementation() {
+        analyses = new ArrayList<Analyse>();
     }
 
 
 
 
     @Override
-    public ArrayList<Transformation> getTransformationTOMainFrame() {
+    public ArrayList<Analyse> getAnalysesTOMainFrame() {
         ArrayList tmp = new ArrayList();
-        Transformation transTmp = new Transformation("FFT", 1);
+        Analyse transTmp = new Analyse("FFT", 1);
         tmp.add(transTmp);
 
         return tmp;
     }
 
     @Override
-    public void setTransformations(ArrayList<Transformation> transformations) {
-            this.transformations = transformations;
+    public void setAnalyses(ArrayList<Analyse> analyses) {
+            this.analyses = analyses;
     }
 
     public void startup() {
+        if(minim == null) {
+        minim = new Minim(this);
+        input = minim.getLineIn();
+        fft = new FFT(input.bufferSize(), input.sampleRate());
+        }
         runs = true;
         super.start();
     }
 
     public void stopit(){
+
         runs = false;
     }
 
 
 
-    public void run() {
-
-
+     public void run() {
         while (runs) {
-            transformations.forEach(transformation -> {
+            analyses.forEach(transformation -> {
 
                 switch (transformation.getId()){
 
                     case 1 :
                         fft.forward(input.mix);
                         transformation.setSpecsize(fft.specSize());
-                        transformation.setSpecsize(fft.specSize());
+
                         ArrayList tmp = new ArrayList();
                         for (int i = 0; i <= fft.specSize(); i++) {
                             tmp.add(fft.getBand(i));
