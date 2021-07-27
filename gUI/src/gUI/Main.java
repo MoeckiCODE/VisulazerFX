@@ -13,8 +13,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 
 public class Main extends Application {
+    //TODO make a private lsit for this Objects, and implement getter and setter in the interface
     public static ArrayList<Action> actions = new ArrayList<>();
     public static ArrayList<GObject> gObjects = new ArrayList<>();
     public static ArrayList<Analyse> analyses = new ArrayList<>();

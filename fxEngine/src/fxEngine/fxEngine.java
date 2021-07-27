@@ -21,7 +21,10 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public class fxEngine  implements fxEngineInterface {
     static GObject cube = new GObject("fxEngine.Cube");
     static GObject line = new GObject("fxEngine.Line");
@@ -48,14 +51,25 @@ public class fxEngine  implements fxEngineInterface {
     static Group group;
     Stage stage;
 
+    /**
+     *
+     * @return width for the scene
+     */
     public static float getWIDTH() {
         return WIDTH;
     }
 
+    /**
+     *
+     * @return Height of the scene
+     */
     public static float getHEIGHT() {
         return HEIGHT;
     }
 
+    /**
+     * Constructor for the Module, Creates the static objects
+     */
     public fxEngine() {
         //Create Action & Objecs for fxEngine
         ArrayList<String> nfv = new ArrayList<>();

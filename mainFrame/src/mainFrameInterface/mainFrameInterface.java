@@ -7,7 +7,10 @@ import Transformation.Analyse;
 
 import java.util.ArrayList;
 
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public interface mainFrameInterface {
 
     /**

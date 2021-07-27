@@ -9,7 +9,10 @@ import analyses.AnalyseImplementation;
 
 
 import java.util.ArrayList;
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public class mainFrameImplementation implements mainFrameInterface {
 
     private  static ArrayList<Analyse> analyses;

@@ -16,7 +16,10 @@ import mainFrameInterface.mainFrameImplementation;
 
 import java.util.ArrayList;
 
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public class Controller {
         private boolean started = false;
         ArrayList<Action> actionsforobject = new ArrayList<Action>();
@@ -525,7 +528,7 @@ if(!aoc.name.equals(tmp2)) {
         aocs.remove(toberemoved);
     }
 
-    public void removeAction(){
+   public void removeAction(){
         actionlist.getItems().remove(actionlist.getSelectionModel().getSelectedItems().get(0));
 
     }

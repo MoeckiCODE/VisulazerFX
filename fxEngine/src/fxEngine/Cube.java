@@ -7,8 +7,12 @@ import javafx.scene.paint.PhongMaterial;
 
 import static java.lang.Math.random;
 import java.util.ArrayList;
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public class Cube {
+    //TODO rework variables to Private, replace dirket usages w/ getter and setter functions
     Integer id;
     static int boxes;
     double size;
@@ -114,6 +118,8 @@ public void change(){
                 (b1.miny <= b2.maxy && b1.maxy >= b2.miny) &&
                 (b1.minz <= b2.maxz && b1.maxz >= b2. minz));
     }
+
+
     public void changecolor(){
 
         PhongMaterial mat = new PhongMaterial();
@@ -122,6 +128,9 @@ public void change(){
         box.setMaterial(mat);
     }
 
+    /**
+     * Moves the Object
+     */
     public void move(){
 
 

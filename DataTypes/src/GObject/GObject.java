@@ -3,8 +3,12 @@ package GObject;
 import AOC.AOC;
 
 import java.util.ArrayList;
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public class GObject {
+    //TODO rework variables to Private, replace dirket usages w/ getter and setter functions
     public  ArrayList<AOC> Objects;
     public ArrayList<Double> values;
     public String name;

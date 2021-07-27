@@ -13,7 +13,10 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 
 public class Logic extends Thread implements LogicInterface{
 //Initiate Objects and Actions
@@ -51,10 +54,7 @@ static boolean runs = false;
       analyses = trans;
     }
 
-    @Override
-    public void addFxEngine(fxEngine fxE){
-        fxint = fxE;
-    }
+
 
     @Override
     public void initiate(Logic log) {
@@ -162,6 +162,7 @@ if(action != null){
     actions.add(newActionfromLogic.get());
     fxint.doAcion(go, actions);
 }
+//TODO put in separate class
 private Action dynamicColorChange(GObject go, ArrayList<Action> actions){
         if(go.name.contains("Cube")){
     Analyse trans = analyses.get(0);
@@ -221,7 +222,7 @@ return tmpA;
 
 
 
-
+//TODO put in separate class
 private void changecolor(GObject go, Action action){
     Double speed = action.getValues().get(0);
     ArrayList<Color> ctmp = new ArrayList<>();
@@ -253,7 +254,7 @@ private void changecolor(GObject go, Action action){
 
     }else action.done = true;
 }
-
+//TODO put in separate class
 private void doSpec(GObject go) {
         //TODO just works for one analyses foreach needed to find the correct one
     Analyse trans = analyses.get(0);
@@ -343,7 +344,7 @@ private void removedone(ArrayList<Action> actions){
 
 
 }
-
+//----------------------Mainloop---------------------
     public void run(){
 
         while (!fxint.runs ){

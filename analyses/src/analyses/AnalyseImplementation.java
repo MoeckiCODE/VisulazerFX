@@ -6,7 +6,10 @@ import ddf.minim.analysis.FFT;
 
 import java.util.ArrayList;
 
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public class AnalyseImplementation extends Thread implements AnalyseInterface {
     private ArrayList<Analyse> analyses;
     private boolean runs = false;
@@ -15,7 +18,9 @@ public class AnalyseImplementation extends Thread implements AnalyseInterface {
     private static FFT fft;
 
 
-
+    /**
+     * Constructor for new Analyses
+     */
     public AnalyseImplementation() {
         analyses = new ArrayList<Analyse>();
     }

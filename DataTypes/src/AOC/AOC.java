@@ -4,8 +4,12 @@ import Action.Action;
 import GObject.GObject;
 
 import java.util.ArrayList;
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public class AOC {
+    //TODO rework variables to Private, replace dirket usages w/ getter and setter functions
     private static Integer newID = 1;
    public Integer id;
    public String name;
@@ -16,6 +20,10 @@ public class AOC {
         return hotleyActions;
     }
 
+    /**
+     *  Constructor to copy a AOC
+     * @param aoc
+     */
     public AOC(AOC aoc) {
         this.id = aoc.id;
         this.name = aoc.name;

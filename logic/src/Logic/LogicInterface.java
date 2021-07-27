@@ -6,10 +6,13 @@ import GObject.GObject;
 import java.util.ArrayList;
 
 import Transformation.Analyse;
-import fxEngine.fxEngine;
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public interface LogicInterface {
 
-void addFxEngine(fxEngine fxE);
+
 
     /**
      * sets the Action Object Combinations on the Logic Module

@@ -4,8 +4,12 @@ package Action;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-
+/**
+ * @author  Richard Moeckel
+ * COPYRIGHT this Code is free to use, to modify and to share. Just reference the original GitHubpage github.com/MoeckiCODE/VisulazerFX
+ */
 public class Action {
+    //TODO rework variables to Private, replace dirket usages w/ getter and setter functions
     ArrayList<Double> values;
    public String actionName;
    public Integer id;
@@ -19,6 +23,11 @@ public class Action {
         this.actionName = actionName;
         this.id = id;
     }
+
+    /**
+     * Constructor to copy an action
+     * @param a the Action that should be Copyed
+     */
     public Action(Action a){
         this.values = new ArrayList<>();
         if(a.values != null)
@@ -34,10 +43,18 @@ public class Action {
         boolean done = false;
     }}
 
+    /**
+     *
+     * @return the collers stored in the action
+     */
     public ArrayList<Color> getColers() {
         return colers;
     }
 
+    /**
+     *
+     * @param colers sets collers to action
+     */
     public void setColers(ArrayList<Color> colers) {
         this.colers = colers;
     }
@@ -58,7 +75,7 @@ public class Action {
 
 
         return false;
-    };
+    }
     public String getHotkey() {
         return hotkey;
     }
